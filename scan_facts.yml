@@ -3,7 +3,6 @@
     scan_use_checksum: false
     scan_use_recursive: false
   tasks:
-
     - name: "Scan packages (Unix/Linux)"
       scan_packages:
         os_family: '{{ ansible_os_family }}'
@@ -20,7 +19,7 @@
     - name: "Scan Insights for Machine ID (Unix/Linux)"
       scan_insights:
       when: ansible_os_family != "Windows"
-
+    
     - name: "Scan packages (Windows)"
       win_scan_packages:
       when: ansible_os_family == "Windows"
@@ -33,4 +32,3 @@
         get_checksum: '{{ scan_use_checksum }}'
         recursive: '{{ scan_use_recursive }}'
       when: scan_file_paths is defined and ansible_os_family == "Windows"
-
